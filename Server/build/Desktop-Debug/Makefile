@@ -52,17 +52,25 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../ClientChatWidget.cpp \
+SOURCES       = ../../ChatProtocol.cpp \
+		../../ClientChatWidget.cpp \
+		../../ClientManager.cpp \
 		../../ServerManager.cpp \
 		../../main.cpp \
-		../../mainwindow.cpp moc_ClientChatWidget.cpp \
+		../../mainwindow.cpp qrc_icons.cpp \
+		moc_ClientChatWidget.cpp \
+		moc_ClientManager.cpp \
 		moc_ServerManager.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = ClientChatWidget.o \
+OBJECTS       = ChatProtocol.o \
+		ClientChatWidget.o \
+		ClientManager.o \
 		ServerManager.o \
 		main.o \
 		mainwindow.o \
+		qrc_icons.o \
 		moc_ClientChatWidget.o \
+		moc_ClientManager.o \
 		moc_ServerManager.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -106,9 +114,26 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
@@ -119,6 +144,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -154,9 +183,13 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		../../../../Server.pro ../../ClientChatWidget.h \
+		../../../../Server.pro ../../ChatProtocol.h \
+		../../ClientChatWidget.h \
+		../../ClientManager.h \
 		../../ServerManager.h \
-		../../mainwindow.h ../../ClientChatWidget.cpp \
+		../../mainwindow.h ../../ChatProtocol.cpp \
+		../../ClientChatWidget.cpp \
+		../../ClientManager.cpp \
 		../../ServerManager.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp
@@ -212,9 +245,26 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 		/usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
@@ -225,6 +275,10 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -260,7 +314,8 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		../../Server.pro
+		../../Server.pro \
+		../../icons.qrc
 	$(QMAKE) -o Makefile ../../Server.pro -spec linux-clang CONFIG+=debug CONFIG+=qml_debug
 /usr/lib/qt/mkspecs/features/spec_pre.prf:
 /usr/lib/qt/mkspecs/common/unix.conf:
@@ -303,9 +358,26 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 /usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri:
@@ -316,6 +388,10 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 /usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri:
@@ -352,6 +428,7 @@ Makefile: ../../Server.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/q
 /usr/lib/qt/mkspecs/features/yacc.prf:
 /usr/lib/qt/mkspecs/features/lex.prf:
 ../../Server.pro:
+../../icons.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../Server.pro -spec linux-clang CONFIG+=debug CONFIG+=qml_debug
 
@@ -366,9 +443,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../../icons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../ClientChatWidget.h ../../ServerManager.h ../../mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../ClientChatWidget.cpp ../../ServerManager.cpp ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../ChatProtocol.h ../../ClientChatWidget.h ../../ClientManager.h ../../ServerManager.h ../../mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../ChatProtocol.cpp ../../ClientChatWidget.cpp ../../ClientManager.cpp ../../ServerManager.cpp ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../ClientChatWidget.ui ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -393,21 +471,37 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_icons.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_icons.cpp
+qrc_icons.cpp: ../../icons.qrc \
+		/usr/bin/rcc \
+		../../icons/busy.png \
+		../../icons/away.png \
+		../../icons/available.png
+	/usr/bin/rcc -name icons ../../icons.qrc -o qrc_icons.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	clang++ -pipe -g -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_ClientChatWidget.cpp moc_ServerManager.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_ClientChatWidget.cpp moc_ClientManager.cpp moc_ServerManager.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_ClientChatWidget.cpp moc_ServerManager.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_ClientChatWidget.cpp moc_ClientManager.cpp moc_ServerManager.cpp moc_mainwindow.cpp
 moc_ClientChatWidget.cpp: ../../ClientChatWidget.h \
+		../../ClientManager.h \
+		../../ChatProtocol.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/adi/dev/ChatApplication/Server/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/adi/dev/ChatApplication/Server -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/clang/17/include -I/usr/local/include -I/usr/include ../../ClientChatWidget.h -o moc_ClientChatWidget.cpp
+
+moc_ClientManager.cpp: ../../ClientManager.h \
+		../../ChatProtocol.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/adi/dev/ChatApplication/Server/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/adi/dev/ChatApplication/Server -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/clang/17/include -I/usr/local/include -I/usr/include ../../ClientManager.h -o moc_ClientManager.cpp
 
 moc_ServerManager.cpp: ../../ServerManager.h \
 		moc_predefs.h \
@@ -416,6 +510,9 @@ moc_ServerManager.cpp: ../../ServerManager.h \
 
 moc_mainwindow.cpp: ../../mainwindow.h \
 		../../ServerManager.h \
+		../../ClientChatWidget.h \
+		../../ClientManager.h \
+		../../ChatProtocol.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/adi/dev/ChatApplication/Server/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/adi/dev/ChatApplication/Server -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/clang/17/include -I/usr/local/include -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
@@ -441,29 +538,49 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
+ChatProtocol.o: ../../ChatProtocol.cpp ../../ChatProtocol.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ChatProtocol.o ../../ChatProtocol.cpp
+
 ClientChatWidget.o: ../../ClientChatWidget.cpp ../../ClientChatWidget.h \
+		../../ClientManager.h \
+		../../ChatProtocol.h \
 		ui_ClientChatWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientChatWidget.o ../../ClientChatWidget.cpp
+
+ClientManager.o: ../../ClientManager.cpp ../../ClientManager.h \
+		../../ChatProtocol.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientManager.o ../../ClientManager.cpp
 
 ServerManager.o: ../../ServerManager.cpp ../../ServerManager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ServerManager.o ../../ServerManager.cpp
 
 main.o: ../../main.cpp ../../mainwindow.h \
-		../../ServerManager.h
+		../../ServerManager.h \
+		../../ClientChatWidget.h \
+		../../ClientManager.h \
+		../../ChatProtocol.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../ServerManager.h \
 		../../ClientChatWidget.h \
+		../../ClientManager.h \
+		../../ChatProtocol.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
+qrc_icons.o: qrc_icons.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icons.o qrc_icons.cpp
+
 moc_ClientChatWidget.o: moc_ClientChatWidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ClientChatWidget.o moc_ClientChatWidget.cpp
+
+moc_ClientManager.o: moc_ClientManager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ClientManager.o moc_ClientManager.cpp
 
 moc_ServerManager.o: moc_ServerManager.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ServerManager.o moc_ServerManager.cpp

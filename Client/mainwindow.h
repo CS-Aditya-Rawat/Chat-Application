@@ -20,13 +20,14 @@ public:
 
 private slots:
     void on_actionConnect_triggered();
-    void dataReceived(QByteArray data);
+    void dataReceived(QString message);
 
     void on_btnSend_clicked();
 
     void on_lnClientName_editingFinished();
 
     void on_cmbStatus_currentIndexChanged(int index);
+    void onTyping();
 
 private:
     Ui::MainWindow *ui;

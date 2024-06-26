@@ -38,5 +38,22 @@ void ClientManager::sendIsTyping(){
 void ClientManager::readyRead()
 {
     auto data = _socket->readAll();
-    emit dataReceived(data);
+    _protocol.loadData(data);
+    switch(_protocol.type()){
+    case ChatProtocol::Text:
+        emit textMessageReceived(_protocol.message());
+        break;
+    case ChatProtocol::SetName:
+        emit nameChanged(_protocol.name());
+        break;
+    case ChatProtocol::SetStatus:
+        emit statusChanged(_protocol.status());
+        break;
+    case ChatProtocol::IsTyping:
+        emit isTyping();
+        break;
+    default:
+        break;
+    }
 }
+

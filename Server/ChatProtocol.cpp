@@ -20,7 +20,22 @@ QByteArray ChatProtocol::setNameMessage(QString name)
 
 void ChatProtocol::loadData(QByteArray data)
 {
-   Q 
+    QDataStream in(&data, QIODevice::ReadOnly);
+    in.setVersion(QDataStream::Qt_5_9);
+    in >> _type;
+    switch(_type) {
+    case Text:
+        in >> _message;
+        break;
+    case SetName:
+        in >> _name;
+        break;
+    case SetStatus:
+        in >> _status;
+        break;
+    default:
+        break;
+    }
 }
 QByteArray ChatProtocol::setStatusMessage(Status status)
 {
@@ -38,4 +53,22 @@ QByteArray ChatProtocol::getData(MessageType type, QString data)
     out.setVersion(QDataStream::Qt_5_9);
     out<< type << data;
     return ba;
+}
+
+ChatProtocol::MessageType ChatProtocol::type() const
+{
+    return _type;
+}
+
+ChatProtocol::Status ChatProtocol::status() const
+{
+    return _status;
+}
+const QString &ChatProtocol::name() const
+{
+    return _name;
+}
+const QString &ChatProtocol::message() const
+{
+    return _message;
 }
